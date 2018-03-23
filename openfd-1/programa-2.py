@@ -1,15 +1,18 @@
 import http.client
 import json
 
-headers = {'User-Agent': 'http-client'} #voy a hacer un cliente, voy a atacar al api de openFDA
-#cuando yo lance la petivción Get . LANZO mi información a openFDA
-conn = http.client.HTTPSConnection("api.fda.gov")#me creo una conexion con open FDA
-conn.request("GET", "/drug/label.json?limit=10", None, headers)#sobre esa conexion mando una peticion
-r1 = conn.getresponse()#conseguir respuesta deopenFDA
-print(r1.status, r1.reason)#status:200, razon:Ok
-label_raw = r1.read().decode("utf-8")#leyendo la respuesta complenta en formato json
-conn.close()
-#lo de limit=10 lo pone en el apirest
+headers = {'User-Agent': 'http-client'}
 
-label=json.loads(label_raw)#decirle a la libreria json tansformarlo a modo dicconario, lista...
-for i in range
+connection = http.client.HTTPSConnection("api.fda.gov")
+connection.request("GET", "/drug/label.json?limit=10", None, headers)
+r1 = connection.getresponse()
+print(r1.status, r1.reason)
+repos_raw = r1.read().decode("utf-8")
+connection.close()
+repos= json.loads(repos_raw)
+#para acceder a los 10 identificadores
+for i in range (len (repos['results'])):#recorro la lista de 'results' (teniendo 10 posiciones)
+    info_medicamento=repos['results'][i]#obtedremos la información de cada medicamento ya que la 'i' tomará valores de 0-9
+
+    print ('- Identificador del medicamento ',i+1,': ' ,info_medicamento['id'])
+#La modificación se establece en la forma que tenemos que pedir a la página.En este caso imponemos un límite como dice la propia pagina que se debe de hacer
