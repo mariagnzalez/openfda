@@ -11,6 +11,6 @@ repos_raw = r1.read().decode("utf-8")
 connection.close()
 repos= json.loads(repos_raw)
 for i in range (len(repos['results'])):#recorro la lista de 'results' (teniendo 10 posiciones)
-    info_medicamento=repos['results'][i]#
+    info_medicamento=repos['results'][i]
     if (info_medicamento['openfda']):
         print('fahgvashv',info_medicamento['openfda']['manufacturer_name'][0])
