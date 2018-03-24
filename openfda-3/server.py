@@ -29,7 +29,7 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
         lista=add_medicamento()#introducimos en la variable lista lo obtenido en la función
         content = "<html><body><ul>"#creamos el html
         content += "<h1>" + 'El listado de medicamentos pedido es el siguiente: ' + "</h1>"
-        for medicamento in lista:#recorro la lista  que es donde se han añadido los medicamentos.
+        for medicamento in lista:#recorro la lista donde se han añadido los medicamentos.
             content+="<li>"+medicamento+'</li>'#creamos una lista en html.
         content+="</ul></body></html>"
         self.wfile.write(bytes(content,'utf8'))
