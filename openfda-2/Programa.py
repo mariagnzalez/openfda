@@ -12,5 +12,5 @@ connection.close()
 repos= json.loads(repos_raw)
 for i in range (len(repos['results'])):#recorro la lista de 'results' (teniendo 10 posiciones)
     info_medicamento=repos['results'][i]
-    if (info_medicamento['openfda']):
-        print('-Fabricante: ',info_medicamento['openfda']['manufacturer_name'][0])
+    if (info_medicamento['openfda']):#si existe la opción 'openfda' entonces imprimir el fabricante.
+        print('-Fabricante',i+1,':',info_medicamento['openfda']['manufacturer_name'][0])
