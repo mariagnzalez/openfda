@@ -16,4 +16,5 @@ for i in range (len(repos['results'])):#recorro la lista de 'results' (teniendo 
         continue
     print('-Fabricante',i+1,':',info_medicamento['openfda']['manufacturer_name'][0])
 # Utilizamos la opción search= active_ingredient como dice openFDA para encontrar todos aquellos medicamentos que presenten el acetilsalycilic
-# Imponemos un limit= 100. 
+# Imponemos un limit= 100.
+# Se hace uso de %22 a ambos lados de acetylsalicilic equivalente a "" ya que al colocarlo en la URL lo transforma a esa notación.
