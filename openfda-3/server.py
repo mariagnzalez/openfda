@@ -13,8 +13,8 @@ def add_medicamento():#creamos una función que actue de cliente.
     repos_raw = r1.read().decode("utf-8")
     connection.close()
     repos = json.loads(repos_raw)
-    for i in range(len(repos['results'])):#recorro la lista de 'results' (teniendo 10 posiciones)
-        info_medicamento = repos['results'][i]
+    for elemento in range(len(repos['results'])):#recorro la lista de 'results' (teniendo 10 posiciones)
+        info_medicamento = repos['results'][elemento]
         if  (info_medicamento['openfda']):#si existe añadiremos el nombre genérico del medicamento
             lista_medicamentos.append(info_medicamento['openfda']['generic_name'][0])
     return lista_medicamentos
@@ -27,11 +27,11 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
         self.send_header('Content-type', 'text/html')
         self.end_headers()
         lista=add_medicamento()#introducimos en la variable lista lo obtenido en la función
-        content = "<html><body><ul>"#creamos el html
+        content = "<html><body><ol>"#creamos el html
         content += "<h1>" + 'El listado de medicamentos pedido es el siguiente: ' + "</h1>"
         for medicamento in lista:#recorro la lista donde se han añadido los medicamentos.
             content+="<li>"+medicamento+'</li>'#creamos una lista en html.
-        content+="</ul></body></html>"
+        content+="</ol></body></html>"
         self.wfile.write(bytes(content,'utf8'))
         return
 
