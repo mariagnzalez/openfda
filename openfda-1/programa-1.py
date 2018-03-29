@@ -10,7 +10,7 @@ repos_raw = r1.read().decode("utf-8")
 connection.close()
 
 
-repos = json.loads(repos_raw)#transformamos dicho docuemento en diccionario, listas para que asi podamos acceder de una forma mas sencilla
+repos = json.loads(repos_raw)#transformamos dicho documento en diccionario, listas para que así podamos acceder de una forma más sencilla
 info_medicamento=repos['results'][0]
 
 print ('- Identificador del medicamento: ',info_medicamento['id'])
