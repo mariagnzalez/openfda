@@ -4,7 +4,7 @@ import http.client
 import json
 
 PORT = 8004
-def add_medicamento():#creamos una función que actue de cliente.
+def add_medicamento():#creamos una función que actúe de cliente.
     lista_medicamentos=[]#abrimos una lista en la que introduciremos el contenido de medicamentos pedido
     headers = {'User-Agent': 'http-client'}
     connection = http.client.HTTPSConnection("api.fda.gov")
