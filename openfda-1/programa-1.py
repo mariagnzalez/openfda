@@ -5,7 +5,7 @@ headers = {'User-Agent': 'http-client'}
 connection = http.client.HTTPSConnection("api.fda.gov")#establecemos conexión con esa pagina
 connection.request("GET", "/drug/label.json", None, headers)# le pedimos que nos de la información pedida
 r1 = connection.getresponse()
-print(r1.status, r1.reason)#imprimimos el estado:200 y la razon:OK
+print(r1.status, r1.reason)
 repos_raw = r1.read().decode("utf-8")
 connection.close()
 
