@@ -9,10 +9,13 @@ while True:
     connection.request("GET", '/drug/label.json?search=active_ingredient:"acetylsalicylic"&limit=100&skip='+str(skip), None, headers)
     r1 = connection.getresponse()
     print(r1.status, r1.reason)
+    if r1.status == 404:
+        print('Recurso no encontrado')
+        exit(1)
     repos_raw = r1.read().decode("utf-8")
     connection.close()
     repos= json.loads(repos_raw)
-    for elemento in range (len(repos['results'])):#recorro la lista de 'results' (teniendo 10 posiciones)
+    for elemento in range (len(repos['results'])):
         info_medicamento=repos['results'][elemento]
         if not (info_medicamento['openfda']):#si existe la opción 'openfda' entonces imprimir el fabricante.
             continue

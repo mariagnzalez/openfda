@@ -11,6 +11,9 @@ def add_medicamento():#creamos una función que actúe de cliente.
     connection.request("GET", "/drug/label.json?limit=10", None, headers)
     r1 = connection.getresponse()
     repos_raw = r1.read().decode("utf-8")
+    if r1.status == 404:
+        print('Recurso no encontrado')
+        exit(1)
     connection.close()
     repos = json.loads(repos_raw)
     for elemento in range(len(repos['results'])):#recorro la lista de 'results' (teniendo 10 posiciones)

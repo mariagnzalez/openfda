@@ -6,6 +6,9 @@ connection = http.client.HTTPSConnection("api.fda.gov")#establecemos conexión c
 connection.request("GET", "/drug/label.json", None, headers)# le pedimos que nos de la información pedida
 r1 = connection.getresponse()
 print(r1.status, r1.reason)
+if r1.status==404:
+    print('Recurso no encontrado')
+    exit(1)
 repos_raw = r1.read().decode("utf-8")
 connection.close()
 
