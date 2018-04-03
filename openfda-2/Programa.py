@@ -23,3 +23,7 @@ while True:
         break
     skip=skip+100
 
+#Para poder acceder a todos los fabricantes y no tener problemas con el limit=100 utilizamos skip.
+#Realizamos un bucle infinito en el que el valor de skip irá cambiando. Así pues, en la primera vuelta no nos saltaremos ningun valor.
+#En la segunda si la longitud de la lista es mayor que 100 o igual entonces ahora nos saltaremos los 100 pimeros medicamentos y asi sucesivamente.
+#En el caso en el que la longitud sea menor que 100 entonces nos saldremos del bucle e imprimiremos los fabricantes que quedan
