@@ -13,16 +13,25 @@ while True:
         exit(1)
     repos_raw = r1.read().decode("utf-8")
     connection.close()
+
+
+
     repos= json.loads(repos_raw)
+
     for elemento in range (len(repos['results'])):
         info_medicamento=repos['results'][elemento]
+
         if not (info_medicamento['openfda']):#si existe la opción 'openfda' entonces imprimir el fabricante.
+            print('- El fabricante del medicamento',elemento+1,'no precisa')#Si no presenta esa opción se impimirá dicho mensaje.
             continue
-        print('-Fabricante',elemento+1,':',info_medicamento['openfda']['manufacturer_name'][0])
+        print('- El fabricante de ',info_medicamento['openfda']['generic_name'][0],'es ',info_medicamento['openfda']['manufacturer_name'][0])
+
     # Utilizamos la opción search= active_ingredient como dice openFDA para encontrar todos aquellos medicamentos que presenten el acetilsalycilic
-    # Imponemos un limit= 100.
+    # Imponemos un limit= 100 puesto que la página no admite mostrar más de 100 medicamentos.
+
     if (len(repos['results']))<100:
         break
+
     skip=skip+100
 
 #Para poder acceder a todos los fabricantes y no tener problemas con el limit=100 utilizamos skip.

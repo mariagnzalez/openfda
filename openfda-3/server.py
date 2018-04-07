@@ -4,7 +4,10 @@ import http.client
 import json
 
 PORT = 8004
+
+
 def add_medicamento():#creamos una función que actúe de cliente.
+
     lista_medicamentos=[]#abrimos una lista en la que introduciremos el contenido de medicamentos pedido
     headers = {'User-Agent': 'http-client'}
     connection = http.client.HTTPSConnection("api.fda.gov")
@@ -15,12 +18,22 @@ def add_medicamento():#creamos una función que actúe de cliente.
         print('Recurso no encontrado')
         exit(1)
     connection.close()
+
+
     repos = json.loads(repos_raw)
+
     for elemento in range(len(repos['results'])):#recorro la lista de 'results' (teniendo 10 posiciones)
         info_medicamento = repos['results'][elemento]
+
         if  (info_medicamento['openfda']):#si existe añadiremos el nombre genérico del medicamento
             lista_medicamentos.append(info_medicamento['openfda']['generic_name'][0])
+
+        else: #en caso contrario, añadiremos a la lista el string propuesto
+            lista_medicamentos.append('Medicamento con informacion no encontrada')
+
     return lista_medicamentos
+
+
 
 #Aplicaremos herencia
 class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
@@ -29,13 +42,17 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header('Content-type', 'text/html')
         self.end_headers()
+
         lista=add_medicamento()#introducimos en la variable lista lo obtenido en la función
+
         content = "<html><body><ol>"#creamos el html
         content += "<h1>" + 'El listado de medicamentos pedido es el siguiente: ' + "</h1>"
         for medicamento in lista:#recorro la lista donde se han añadido los medicamentos.
             content+="<li>"+medicamento+'</li>'#creamos una lista en html.
         content+="</ol></body></html>"
+
         self.wfile.write(bytes(content,'utf8'))
+
         return
 
 
