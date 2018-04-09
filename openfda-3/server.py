@@ -68,5 +68,5 @@ except KeyboardInterrupt:
 
 print("")
 print("Servidor parado")
-httpd.close()
+
 
