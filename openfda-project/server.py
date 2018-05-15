@@ -84,9 +84,7 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):#Aplicamos here
         limit=1                                 # si no hay limit se tomará por defecto el limit=1.
 
         if parametros:
-
             parte_limit = parametros.split("=")
-
             if parte_limit[0] == "limit":# nos aseguramos que la parte del igual no es de un 'search'.
 
                 if not(parte_limit[1].isdigit()):#En el caso de que el cliente ponga en el campo del limit un valor no numerico cogerá por defecto limit=1
@@ -252,7 +250,6 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):#Aplicamos here
 
 
 socketserver.TCPServer.allow_reuse_address= True
-
 
 Handler = testHTTPRequestHandler#objeto Handler que llevará a cabo lo que hemos aplicado en la clase
 
