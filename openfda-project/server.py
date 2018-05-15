@@ -34,16 +34,17 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):#Aplicamos here
                 </head>
                 <body>
                     <h1>OpenFDA App </h1>
+                    <h4>Welcome to the OpenFDA application</h4>
                     <form method="get" action="listDrugs">
                         Drug list: <br>
-                        Limite: <input type='text' name="limit"></input>
+                        Limit: <input type='text' name="limit"></input>
                         <input type = "submit" value="submit">
                         </input>
                     </form>
                     <br>
                     <form method="get" action="listCompanies">
                         List Company: <br>
-                        Limite: <input type='text' name="limit"></input>
+                        Limit: <input type='text' name="limit"></input>
                         <input type = "submit" value="submit">
                         </input>
                     </form>
@@ -62,7 +63,7 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):#Aplicamos here
                     <br>
                     <form method="get" action="listWarnings">
                         List Warnings: <br>
-                        Limite: <input type='text' name="limit"></input>
+                        Limit: <input type='text' name="limit"></input>
                         <input type= "submit" value="submit">
                         </input>
                     </form>
