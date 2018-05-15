@@ -36,14 +36,14 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):#Aplicamos here
                     <h1>OpenFDA App </h1>
                     <h4>Welcome to the OpenFDA application</h4>
                     <form method="get" action="listDrugs">
-                        Drug list: <br>
+                        <u>Drug list:</u> <br>
                         Limit: <input type='text' name="limit"></input>
                         <input type = "submit" value="submit">
                         </input>
                     </form>
                     <br>
                     <form method="get" action="listCompanies">
-                        List Company: <br>
+                        <u>List Company: </u><br>
                         Limit: <input type='text' name="limit"></input>
                         <input type = "submit" value="submit">
                         </input>
@@ -62,7 +62,7 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):#Aplicamos here
                     </form>
                     <br>
                     <form method="get" action="listWarnings">
-                        List Warnings: <br>
+                        <u>List Warnings: </u><br>
                         Limit: <input type='text' name="limit"></input>
                         <input type= "submit" value="submit">
                         </input>
@@ -107,9 +107,7 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):#Aplicamos here
             self.send_header('Content-type', 'text/html')
             self.end_headers()
             html=self.formulario()#llamada a la función del formulario
-
             self.wfile.write(bytes(html, "utf8"))
-
 
 
         elif 'listDrugs' in self.path:
@@ -132,9 +130,7 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):#Aplicamos here
                     medicamentos.append('Desconocido')
 
             list_html=self.add_web(medicamentos)#llamada a la funcion que realiza la pagina web.
-
             self.wfile.write(bytes(list_html, "utf8"))
-
 
 
         elif 'listCompanies' in self.path:
@@ -156,9 +152,7 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):#Aplicamos here
                     companies.append('Desconocida')
 
             list_html=self.add_web(companies)
-
             self.wfile.write(bytes(list_html, "utf8"))
-
 
 
         elif  'searchDrug' in self.path:
@@ -183,9 +177,7 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):#Aplicamos here
                     li_drug.append('Desconocido')
 
             list_html = self.add_web(li_drug)
-
             self.wfile.write(bytes(list_html, "utf8"))
-
 
 
         elif 'searchCompany' in self.path:
@@ -210,9 +202,7 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):#Aplicamos here
                     li_company.append('Desconocido')
 
             list_html = self.add_web(li_company)
-
             self.wfile.write(bytes(list_html, "utf8"))
-
 
 
         elif 'listWarnings' in self.path:
@@ -235,13 +225,10 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):#Aplicamos here
                     warnings.append('Desconocido')
 
             list_html= self.add_web(warnings)
-
             self.wfile.write(bytes(list_html, "utf8"))
 
 
-
         elif 'redirect' in self.path:
-
             print('Redirección a la página principal')
             self.send_response(302)  #se está haciendo una redirección de una página a otra. Al ser '302' es temporal.
             self.send_header('Location', 'http://localhost:'+str(PORT))
@@ -250,25 +237,18 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):#Aplicamos here
 
 
         elif 'secret' in self.path: #Cuando el cliente utilice como recurso 'secret' se abrirá una pagina de error en la que no se encuetra autorizado.
-
             self.send_error(401)
             self.send_header('WWW-Authenticate', 'Basic realm="My server"')
             self.end_headers()
 
 
         else:                     #este caso se dará cuando se escriba un recurso no correcto.
-
             self.send_error(404)
             self.send_header('Content-type', 'text/plain; charset=utf-8')
             self.end_headers()
             self.wfile.write("Page not found '{}'.".format(self.path).encode())
 
-
         return
-
-
-
-
 
 
 
