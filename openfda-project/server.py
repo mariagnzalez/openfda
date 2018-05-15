@@ -119,7 +119,6 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):#Aplicamos here
             self.parameter=''
             repos=self.add_conn(limit) #llamada a la función que establece conexión.
 
-
             medicamentos= []
             for elemento in range(len(repos['results'])):
                 info_medicamento = repos['results'][elemento]
