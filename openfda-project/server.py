@@ -164,18 +164,21 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):#Aplicamos here
             repos=self.add_conn(limit)
 
             li_drug=[]
-            for elemento in range(len(repos['results'])):
-                info_medicamento = repos['results'][elemento]
+            try:
+                for elemento in range(len(repos['results'])):
+                    info_medicamento = repos['results'][elemento]
 
-                if info_medicamento['openfda']:
-                    li_drug.append(info_medicamento['openfda']['generic_name'][0])
+                    if info_medicamento['openfda']:
+                        li_drug.append(info_medicamento['openfda']['generic_name'][0])
 
-                else:
-                    li_drug.append('Desconocido')
+                    else:
+                        li_drug.append('Desconocido')
 
-            list_html = self.add_web(li_drug)
-            self.wfile.write(bytes(list_html, "utf8"))
+                list_html = self.add_web(li_drug)
+                self.wfile.write(bytes(list_html, "utf8"))
 
+            except KeyError:
+                print('ERROR, se ha introducido un medicamento no correcto')
 
         elif 'searchCompany' in self.path:
 
@@ -189,18 +192,21 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):#Aplicamos here
             repos=self.add_conn(limit)
 
             li_company = []
-            for elemento in range(len(repos['results'])):
-                info_medicamento = repos['results'][elemento]
+            try:
+                for elemento in range(len(repos['results'])):
+                    info_medicamento = repos['results'][elemento]
 
-                if info_medicamento['openfda']:
-                    li_company.append(info_medicamento['openfda']['manufacturer_name'][0])
+                    if info_medicamento['openfda']:
+                        li_company.append(info_medicamento['openfda']['manufacturer_name'][0])
 
-                else:
-                    li_company.append('Desconocido')
+                    else:
+                        li_company.append('Desconocido')
 
-            list_html = self.add_web(li_company)
-            self.wfile.write(bytes(list_html, "utf8"))
+                list_html = self.add_web(li_company)
+                self.wfile.write(bytes(list_html, "utf8"))
 
+            except KeyError:
+                print('ERROR, se ha introducido una empresa no correcta')
 
         elif 'listWarnings' in self.path:
 
